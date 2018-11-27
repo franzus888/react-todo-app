@@ -31,16 +31,18 @@ class App extends Component {
         if (this.state.newTodo === '') {
             return;
         };
-        this.setState({
-            newTodo: "",
-            listBtnsAllDone: true,
-            todos: [
-                ...this.state.todos, {
-                    title: this.state.newTodo,
-                    done: false
-                }
-            ]
-        });
+
+        let todos = [
+            ...this.state.todos, {
+                title: this.state.newTodo,
+                done: false
+            }
+        ]
+        if (todos.length >= 2) {
+            this.setState({newTodo: "", listBtnsAllDone: true, todos});
+        } else {
+            this.setState({newTodo: "", todos});
+        }
     };
 
     checkTodoDone(e, index) {
@@ -57,10 +59,14 @@ class App extends Component {
         ]; // move todo to done list
         todos.splice(index, 1); // remove todo from todos list
 
-        if (todos.length === 0) {
-            this.setState({listBtnsAllDone: "", listBtnsDelAll: true, todos, dones});
+        if (dones.length >= 2 && todos.length >= 2) {
+            this.setState({listBtnsAllDone: true, listBtnsDelAll: true, todos, dones});
+        } else if (dones.length >= 2 && todos.length <= 1) {
+            this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
+        } else if (dones.length <= 1 && todos.length >= 2) {
+            this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
         } else {
-            this.setState({todos, dones});
+            this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
     };
 
@@ -77,10 +83,14 @@ class App extends Component {
         ]; // move done to todo list
         dones.splice(index, 1); // remove done from done list
 
-        if (dones.length === 0) {
-            this.setState({listBtnsAllDone: true, listBtnsDelAll: "", todos, dones});
+        if (dones.length >= 2 && todos.length >= 2) {
+            this.setState({listBtnsAllDone: true, listBtnsDelAll: true, todos, dones});
+        } else if (dones.length >= 2 && todos.length <= 1) {
+            this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
+        } else if (dones.length <= 1 && todos.length >= 2) {
+            this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
         } else {
-            this.setState({todos, dones});
+            this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
     };
 
@@ -100,29 +110,26 @@ class App extends Component {
         this.setState({hoverDone: ''})
     };
 
-    removeTodo(index) {
-        const dones = [...this.state.dones];
-        dones.splice(index, 1);
-
-        this.setState({dones});
-    };
-
     deleteTodo(index) {
-        const todos = [...this.state.todos];
+        let todos = [...this.state.todos];
         todos.splice(index, 1);
 
-        if (todos.length === 0) {
-            this.setState({listBtns: false, todos});
+        if (todos.length <= 1) {
+            this.setState({listBtnsAllDone: false, todos});
         } else {
-            this.setState({todos});
-        }
+            this.setState({listBtnsAllDone: true, todos});
+        };
     };
 
     deleteDone(index) {
         let dones = [...this.state.dones];
         dones.splice(index, 1);
 
-        this.setState({dones});
+        if (dones.length <= 1) {
+            this.setState({listBtnsDelAll: false, dones});
+        } else {
+            this.setState({listBtnsDelAll: true, dones});
+        };
     };
 
     showListBtns() {
@@ -153,12 +160,7 @@ class App extends Component {
             }); // mark todos done
         let dones = [...this.state.dones].concat(todos); // merge arrays
         todos.splice(0, todos.length); // delete todos
-
-        if (todos.length === 0) {
-            this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos: [], dones});
-        } else {
-            this.setState({listBtnsDelAll: true, todos: [], dones});
-        };
+        this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos: [], dones});
     };
 
     render() {
@@ -202,7 +204,15 @@ class App extends Component {
                         hoverDone={this.state.hoverDone}
                         deleteDone={this
                         .deleteDone
-                        .bind(this)}/>
+                        .bind(this)}
+                        allDone={this
+                        .allDone
+                        .bind(this)}
+                        deleteAll={this
+                        .deleteAll
+                        .bind(this)}
+                        listBtnsAllDone={this.state.listBtnsAllDone}
+                        listBtnsDelAll={this.state.listBtnsDelAll}/>
                 </main>
                 <Footer/>
             </div>

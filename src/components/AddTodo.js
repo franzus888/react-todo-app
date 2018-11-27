@@ -11,12 +11,14 @@ class AddTodo extends Component {
         return (
             <div className="App-add-todo">
                 <form onSubmit={(e) => formSubmitted(e)}>
-                    <input
+                    <p><input
                         className="App-textfield"
                         type="text"
                         onChange={(e) => newTodoChanged(e)}
-                        value={newTodo}/>
-                    <button type="submitButton"><FontAwesomeIcon className="App-svg-left" icon={faPlus}/>Add</button>
+                        value={newTodo}/></p>
+                    <p>
+                        <button type="submitButton"><FontAwesomeIcon className="App-svg-left" icon={faPlus}/>Add</button>
+                    </p>
                 </form>
             </div>
         )

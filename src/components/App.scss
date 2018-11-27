@@ -10,8 +10,9 @@ button {
     font-family: "Montserrat",sans-serif;
     color: $primary-color;
     background-color: white;
-    border-radius: 5px;
-    border: 0.5px solid $primary-color;
+    width: 100px;
+    padding: 5px;
+    border: 2px solid $primary-color;
 }
 button:hover {
     background-color: $primary-color;

@@ -1,6 +1,33 @@
-@import './../index';
+$primary-color: #333;
 
 .App {
-  margin: 0 auto;
-  text-align: center;
+    margin: 0 auto;
+    text-align: center;
+    color: $primary-color;
 }
+
+button {
+    font-family: "Montserrat",sans-serif;
+    color: $primary-color;
+    background-color: white;
+    border-radius: 5px;
+    border: 0.5px solid $primary-color;
+}
+button:hover {
+    background-color: $primary-color;
+    color: white;
+    cursor: pointer;
+}
+button:focus {
+    outline: none;
+}
+
+a {
+    color: $primary-color;
+    text-decoration-line: none;
+}
+a:hover {
+    text-decoration-line: underline;
+
+}
+

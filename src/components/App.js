@@ -176,18 +176,33 @@ class App extends Component {
                         .bind(this)}/>
                     <Lists
                         todos={this.state.todos}
-                        showTodoBtns={this.showTodoBtns.bind(this)}
-                        hideTodoBtns={this.hideTodoBtns.bind(this)}
-                        checkTodoDone={this.checkTodoDone.bind(this)}
+                        showTodoBtns={this
+                        .showTodoBtns
+                        .bind(this)}
+                        hideTodoBtns={this
+                        .hideTodoBtns
+                        .bind(this)}
+                        checkTodoDone={this
+                        .checkTodoDone
+                        .bind(this)}
                         hoverTodo={this.state.hoverTodo}
-                        deleteTodo={this.deleteTodo.bind(this)}
+                        deleteTodo={this
+                        .deleteTodo
+                        .bind(this)}
                         dones={this.state.dones}
-                        showDoneBtns={this.showDoneBtns.bind(this)}
-                        hideDoneBtns={this.hideDoneBtns.bind(this)}
-                        uncheckDoneToDo={this.uncheckDoneToDo.bind(this)}
+                        showDoneBtns={this
+                        .showDoneBtns
+                        .bind(this)}
+                        hideDoneBtns={this
+                        .hideDoneBtns
+                        .bind(this)}
+                        uncheckDoneToDo={this
+                        .uncheckDoneToDo
+                        .bind(this)}
                         hoverDone={this.state.hoverDone}
-                        deleteDone={this.deleteDone.bind(this)}
-                    />
+                        deleteDone={this
+                        .deleteDone
+                        .bind(this)}/>
                 </main>
                 <Footer/>
             </div>

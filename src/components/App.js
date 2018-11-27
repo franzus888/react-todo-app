@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 // Components
+import Header from './Header';
 import AddTodo from './AddTodo';
 import Lists from './Lists';
 // Fontawesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faList, faCopyright} from '@fortawesome/free-solid-svg-icons';
+import {faCopyright} from '@fortawesome/free-solid-svg-icons';
 import {faXing, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 // Styles
 import './App.scss';
@@ -167,7 +168,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1><FontAwesomeIcon className="App-svg-left" icon={faList}/>Todo List</h1>
+                    <Header/>
                 </header>
                 <main className="App-main">
                     <AddTodo
@@ -192,7 +193,6 @@ class App extends Component {
                         hoverDone={this.state.hoverDone}
                         deleteDone={this.deleteDone.bind(this)}
                     />
-                
                 </main>
                 <footer className="App-footer">
                     <div>

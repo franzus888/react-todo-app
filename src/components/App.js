@@ -4,6 +4,9 @@ import Header from './Header';
 import AddTodo from './AddTodo';
 import Lists from './Lists';
 import Footer from './Footer'
+// Drag and Drop
+import HTML5Backend from 'react-dnd-html5-backend'
+import {DragDropContext} from 'react-dnd'
 // Styles
 import './App.scss';
 
@@ -17,7 +20,18 @@ class App extends Component {
             hoverDone: false,
             listBtnsAllDone: false,
             listBtnsDelAll: false,
-            todos: [],
+            todos: [
+                {
+                    title: 'todo1',
+                    done: false
+                }, {
+                    title: 'todo2',
+                    done: false
+                }, {
+                    title: 'todo3',
+                    done: false
+                }
+            ],
             dones: []
         };
     };
@@ -110,6 +124,19 @@ class App extends Component {
         this.setState({hoverDone: ''})
     };
 
+    moveTodo(dragItem, hoverIndex) {
+        let todos = [...this.state.todos]; // copy the array
+
+        if (dragItem.index === hoverIndex) {
+            return // Don't replace items with themselves
+        };
+
+        todos.splice(dragItem.index, 1); // delete dragged item
+        todos.splice(hoverIndex, 0, dragItem); // insert dragged item
+
+        this.setState({todos});
+    };
+
     deleteTodo(index) {
         let todos = [...this.state.todos];
         todos.splice(index, 1);
@@ -177,7 +204,6 @@ class App extends Component {
                         .newTodoChanged
                         .bind(this)}/>
                     <Lists
-                        todos={this.state.todos}
                         showTodoBtns={this
                         .showTodoBtns
                         .bind(this)}
@@ -188,6 +214,9 @@ class App extends Component {
                         .checkTodoDone
                         .bind(this)}
                         hoverTodo={this.state.hoverTodo}
+                        moveTodo={this
+                        .moveTodo
+                        .bind(this)}
                         deleteTodo={this
                         .deleteTodo
                         .bind(this)}
@@ -201,7 +230,6 @@ class App extends Component {
                         uncheckDoneToDo={this
                         .uncheckDoneToDo
                         .bind(this)}
-                        hoverDone={this.state.hoverDone}
                         deleteDone={this
                         .deleteDone
                         .bind(this)}
@@ -211,6 +239,8 @@ class App extends Component {
                         deleteAll={this
                         .deleteAll
                         .bind(this)}
+                        todos={this.state.todos}
+                        hoverDone={this.state.hoverDone}
                         listBtnsAllDone={this.state.listBtnsAllDone}
                         listBtnsDelAll={this.state.listBtnsDelAll}/>
                 </main>
@@ -220,4 +250,4 @@ class App extends Component {
     };
 };
 
-export default App;
+export default DragDropContext(HTML5Backend)(App)

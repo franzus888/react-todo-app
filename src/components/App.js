@@ -3,10 +3,7 @@ import React, {Component} from 'react';
 import Header from './Header';
 import AddTodo from './AddTodo';
 import Lists from './Lists';
-// Fontawesome
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCopyright} from '@fortawesome/free-solid-svg-icons';
-import {faXing, faLinkedin} from '@fortawesome/free-brands-svg-icons';
+import Footer from './Footer'
 // Styles
 import './App.scss';
 
@@ -167,9 +164,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <Header/>
-                </header>
+                <Header/>
                 <main className="App-main">
                     <AddTodo
                         newTodo={this.state.newTodo}
@@ -194,28 +189,7 @@ class App extends Component {
                         deleteDone={this.deleteDone.bind(this)}
                     />
                 </main>
-                <footer className="App-footer">
-                    <div>
-                        <span><FontAwesomeIcon className="App-svg-left" icon={faCopyright}/>
-                            <a href="mailto:franz.straube@gmail.com">Franz Straube</a>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <a
-                                href="https://www.xing.com/profile/Franz_Straube"
-                                target="_blank"
-                                rel="noopener noreferrer"><FontAwesomeIcon className="App-svg-left" icon={faXing}/></a>
-                        </span>
-                        <span className="seperator">|</span>
-                        <span>
-                            <a
-                                href="https://www.linkedin.com/in/franz-straube-039473b4/"
-                                target="_blank"
-                                rel="noopener noreferrer"><FontAwesomeIcon className="App-svg-right" icon={faLinkedin}/></a>
-                        </span>
-                    </div>
-                </footer>
+                <Footer/>
             </div>
         );
     };

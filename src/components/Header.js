@@ -8,7 +8,9 @@ import './Header.scss';
 class Header extends Component {
     render() {
         return (
-            <h1><FontAwesomeIcon className="App-svg-left" icon={faList}/>Todo List</h1>
+            <header className="App-header">
+                <h1><FontAwesomeIcon className="App-svg-left" icon={faList}/>Todo List</h1>
+            </header>
         )
     };
 };

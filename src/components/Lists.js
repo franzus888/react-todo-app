@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Todolist from './TodoList'
 import Donelist from './DoneList'
+import ListBtns from './ListBtns'
 // Styles
 import './Lists.scss';
 
@@ -22,6 +23,11 @@ class Lists extends Component {
                     uncheckDoneToDo={this.props.uncheckDoneToDo}
                     hoverDone={this.props.hoverDone}
                     deleteDone={this.props.deleteDone}/>
+                <ListBtns
+                    listBtnsAllDone={this.props.listBtnsAllDone}
+                    allDone={this.props.allDone}
+                    listBtnsDelAll={this.props.listBtnsDelAll}
+                    deleteAll={this.props.deleteAll}/>
             </div>
         )
     };

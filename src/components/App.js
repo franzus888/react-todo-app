@@ -4,7 +4,7 @@ import AddTodo from './AddTodo';
 import Lists from './Lists';
 // Fontawesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faList, faCopyright, faSort, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faList, faCopyright} from '@fortawesome/free-solid-svg-icons';
 import {faXing, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 // Styles
 import './App.scss';
@@ -192,26 +192,7 @@ class App extends Component {
                         hoverDone={this.state.hoverDone}
                         deleteDone={this.deleteDone.bind(this)}
                     />
-                <div className="App-list-btns">
-                        <button
-                            style={{
-                            display: this.state.listBtnsAllDone
-                                ? ''
-                                : 'none'
-                        }}
-                            onClick={this
-                            .allDone
-                            .bind(this)}><FontAwesomeIcon className="App-svg-left" icon={faCheck}/>All Done</button>
-                        <button
-                            style={{
-                            display: this.state.listBtnsDelAll
-                                ? ''
-                                : 'none'
-                        }}
-                            onClick={this
-                            .deleteAll
-                            .bind(this)}><FontAwesomeIcon className="App-svg-left" icon={faTimes}/>Delete all</button>
-                    </div>
+                
                 </main>
                 <footer className="App-footer">
                     <div>

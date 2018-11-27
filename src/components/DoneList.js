@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // Fontawesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSort, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 // Styles
 import './DoneList.scss';
 

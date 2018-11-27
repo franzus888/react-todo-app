@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 // Styles
-import './App.scss';
+import './AddTodo.scss';
 
 class AddTodo extends Component {
     render() {

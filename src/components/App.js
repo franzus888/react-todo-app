@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // Components
 import AddTodo from './AddTodo';
+import Lists from './Lists';
 // Fontawesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList, faCopyright, faSort, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
@@ -177,81 +178,21 @@ class App extends Component {
                         newTodoChanged={this
                         .newTodoChanged
                         .bind(this)}/>
-                    <div className="App-lists">
-                        <ul className="App-todo-list">
-                            {this
-                                .state
-                                .todos
-                                .map((todo, index) => {
-                                    return (
-                                        <li
-                                            className="App-list-item"
-                                            key={index}
-                                            onMouseOver={() => this.showTodoBtns(index)}
-                                            onMouseOut={() => this.hideTodoBtns(index)}>
-                                            <input
-                                                className="App-checkbox"
-                                                onChange={(e) => this.checkTodoDone(e, index)}
-                                                type="checkbox"
-                                                checked={todo.done}/>
-                                            <span
-                                                className="App-todo-move"
-                                                style={{
-                                                display: this.state.hoverTodo === index
-                                                    ? ''
-                                                    : 'none'
-                                            }}><FontAwesomeIcon className="App-svg-middle" icon={faSort}/></span>
-                                            <span className="App-item-todo">{todo.title}</span>
-                                            <span
-                                                className="App-todo-delete"
-                                                style={{
-                                                display: this.state.hoverTodo === index
-                                                    ? ''
-                                                    : 'none'
-                                            }}><FontAwesomeIcon
-                                                onClick={() => this.deleteTodo(index)}
-                                                className="App-svg-delete"
-                                                icon={faTimes}/></span>
-                                        </li>
-                                    )
-                                })}
-                        </ul>
-                        <ul className="App-done-list">
-                            {this
-                                .state
-                                .dones
-                                .map((done, index) => {
-                                    return (
-                                        <li
-                                            className="App-list-item"
-                                            key={index}
-                                            onMouseOver={() => this.showDoneBtns(index)}
-                                            onMouseOut={() => this.hideDoneBtns(index)}>
-                                            <input
-                                                className="App-checkbox"
-                                                onChange={(e) => this.uncheckDoneToDo(e, index)}
-                                                type="checkbox"
-                                                checked={done.done}/>
-                                            <span
-                                                className={done.done
-                                                ? "App-item-done"
-                                                : ""}>{done.title}</span>
-                                            <span
-                                                className="App-done-delete"
-                                                style={{
-                                                display: this.state.hoverDone === index
-                                                    ? ''
-                                                    : 'none'
-                                            }}><FontAwesomeIcon
-                                                onClick={() => this.deleteDone(index)}
-                                                className="App-svg-delete"
-                                                icon={faTimes}/></span>
-                                        </li>
-                                    )
-                                })}
-                        </ul>
-                    </div>
-                    <div className="App-list-btns">
+                    <Lists
+                        todos={this.state.todos}
+                        showTodoBtns={this.showTodoBtns.bind(this)}
+                        hideTodoBtns={this.hideTodoBtns.bind(this)}
+                        checkTodoDone={this.checkTodoDone.bind(this)}
+                        hoverTodo={this.state.hoverTodo}
+                        deleteTodo={this.deleteTodo.bind(this)}
+                        dones={this.state.dones}
+                        showDoneBtns={this.showDoneBtns.bind(this)}
+                        hideDoneBtns={this.hideDoneBtns.bind(this)}
+                        uncheckDoneToDo={this.uncheckDoneToDo.bind(this)}
+                        hoverDone={this.state.hoverDone}
+                        deleteDone={this.deleteDone.bind(this)}
+                    />
+                <div className="App-list-btns">
                         <button
                             style={{
                             display: this.state.listBtnsAllDone

@@ -20,18 +20,7 @@ class App extends Component {
             hoverDone: false,
             listBtnsAllDone: false,
             listBtnsDelAll: false,
-            todos: [
-                {
-                    title: 'todo1',
-                    done: false
-                }, {
-                    title: 'todo2',
-                    done: false
-                }, {
-                    title: 'todo3',
-                    done: false
-                }
-            ],
+            todos: [],
             dones: []
         };
     };

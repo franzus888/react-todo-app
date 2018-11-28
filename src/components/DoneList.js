@@ -1,49 +1,27 @@
 import React, {Component} from 'react';
-// Fontawesome
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import DoneItem from './DoneItem'
 // Styles
 import './DoneList.scss';
 
 class DoneList extends Component {
     render() {
         let {
-            dones,
-            showDoneBtns,
-            hideDoneBtns,
-            uncheckDoneToDo,
-            hoverDone,
-            deleteDone
+            dones
         } = this.props;
         return (
             <ul className="App-done-list">
                 {dones.map((done, index) => {
                     return (
-                        <li
-                            className="App-list-item"
-                            key={index}
-                            onMouseOver={() => showDoneBtns(index)}
-                            onMouseOut={() => hideDoneBtns(index)}>
-                            <input
-                                className="App-checkbox"
-                                onChange={(e) => uncheckDoneToDo(e, index)}
-                                type="checkbox"
-                                checked={done.done}/>
-                            <span
-                                className={done.done
-                                ? "App-item-done"
-                                : ""}>{done.title}</span>
-                            <span
-                                className="App-done-delete"
-                                style={{
-                                display: hoverDone === index
-                                    ? ''
-                                    : 'none'
-                            }}><FontAwesomeIcon
-                                onClick={() => deleteDone(index)}
-                                className="App-svg-delete"
-                                icon={faTimes}/></span>
-                        </li>
+                        <DoneItem
+                        done={done}
+                        inedx={index}
+                        key={index}
+                        showDoneBtns={this.props.showDoneBtns}
+                        hideDoneBtns={this.props.hideDoneBtns}
+                        uncheckDoneToDo={this.props.uncheckDoneToDo}
+                        hoverDone={this.props.hoverDone}
+                        deleteDone={this.props.deleteDone}
+                        />
                     )
                 })}
             </ul>

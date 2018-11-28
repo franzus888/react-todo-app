@@ -1,0 +1,10 @@
+@import './App.scss';
+
+.App-item-done {
+    text-decoration: line-through;
+}
+
+.App-done-delete{
+    float:right;
+    padding-right: 5px;
+}

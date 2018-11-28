@@ -41,11 +41,19 @@ class App extends Component {
                 done: false
             }
         ]
-        if (todos.length >= 2) {
-            this.setState({newTodo: "", listBtnsAllDone: true, todos});
-        } else {
-            this.setState({newTodo: "", todos});
-        }
+
+        let dones= [...this.state.dones]
+
+        if(todos.length <=1 && dones.length <= 1){
+            return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        } else if(todos.length >=2){
+            return this.setState({newTodo: "", listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
+        } else if(dones.length >=2 && todos.length === 0){
+            return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
+        } else if(dones.length >=2 && todos.length !== 0){
+            return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        };
+
     };
 
     checkTodoDone(e, index) {
@@ -62,14 +70,14 @@ class App extends Component {
         ]; // move todo to done list
         todos.splice(index, 1); // remove todo from todos list
 
-        if (dones.length >= 2 && todos.length >= 2) {
-            this.setState({listBtnsAllDone: true, listBtnsDelAll: true, todos, dones});
-        } else if (dones.length >= 2 && todos.length <= 1) {
-            this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
-        } else if (dones.length <= 1 && todos.length >= 2) {
-            this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
-        } else {
-            this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        if(todos.length <=1 && dones.length <= 1){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        } else if(todos.length >=2){
+            return this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
+        } else if(dones.length >=2 && todos.length === 0){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
+        } else if(dones.length >=2 && todos.length !== 0){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
     };
 
@@ -86,15 +94,16 @@ class App extends Component {
         ]; // move done to todo list
         dones.splice(index, 1); // remove done from done list
 
-        if (dones.length >= 2 && todos.length >= 2) {
-            this.setState({listBtnsAllDone: true, listBtnsDelAll: true, todos, dones});
-        } else if (dones.length >= 2 && todos.length <= 1) {
-            this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
-        } else if (dones.length <= 1 && todos.length >= 2) {
-            this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
-        } else {
-            this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        if(todos.length <=1 && dones.length <= 1){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        } else if(todos.length >=2){
+            return this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
+        } else if(dones.length >=2 && todos.length === 0){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
+        } else if(dones.length >=2 && todos.length !== 0){
+            return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
+
     };
 
     showTodoBtns(index) {
@@ -161,7 +170,11 @@ class App extends Component {
         todos.splice(0, todos.length);
         let dones = [...this.state.dones];
         dones.splice(0, dones.length);
-        this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
+        if (todos.length === 0) {
+            this.setState({listBtnsDelAll: true, todos, dones});
+        } else {
+            this.setState({listBtnsDelAll: false, todos, dones});
+        }
     };
 
     allDone() {

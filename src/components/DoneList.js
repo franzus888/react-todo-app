@@ -14,7 +14,7 @@ class DoneList extends Component {
                     return (
                         <DoneItem
                         done={done}
-                        inedx={index}
+                        index={index}
                         key={index}
                         showDoneBtns={this.props.showDoneBtns}
                         hideDoneBtns={this.props.hideDoneBtns}

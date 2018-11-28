@@ -6,7 +6,7 @@ import {faSort, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {DragSource, DropTarget} from 'react-dnd';
 import flow from 'lodash/flow';
 // Styles
-import './TodoList.scss';
+import './TodoItem.scss';
 
 const itemSource = {
     beginDrag(props) {

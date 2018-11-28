@@ -16,11 +16,9 @@ class DoneItem extends Component {
             hoverDone,
             deleteDone
         } = this.props;
-
         return (
             <li
                 className="App-list-item"
-                key={index}
                 onMouseOver={() => showDoneBtns(index)}
                 onMouseOut={() => hideDoneBtns(index)}>
                 <input

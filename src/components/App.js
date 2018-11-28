@@ -26,7 +26,7 @@ class App extends Component {
     };
 
     newTodoChanged(e) {
-        this.setState({newTodo: e.target.value});
+        return this.setState({newTodo: e.target.value});
     };
 
     formSubmitted(e) {
@@ -42,15 +42,15 @@ class App extends Component {
             }
         ]
 
-        let dones= [...this.state.dones]
+        let dones = [...this.state.dones]
 
-        if(todos.length <=1 && dones.length <= 1){
+        if (todos.length <= 1 && dones.length <= 1) {
             return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
-        } else if(todos.length >=2){
+        } else if (todos.length >= 2) {
             return this.setState({newTodo: "", listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
-        } else if(dones.length >=2 && todos.length === 0){
+        } else if (dones.length >= 2 && todos.length === 0) {
             return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
-        } else if(dones.length >=2 && todos.length !== 0){
+        } else if (dones.length >= 2 && todos.length !== 0) {
             return this.setState({newTodo: "", listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
 
@@ -70,13 +70,13 @@ class App extends Component {
         ]; // move todo to done list
         todos.splice(index, 1); // remove todo from todos list
 
-        if(todos.length <=1 && dones.length <= 1){
+        if (todos.length <= 1 && dones.length <= 1) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
-        } else if(todos.length >=2){
+        } else if (todos.length >= 2) {
             return this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
-        } else if(dones.length >=2 && todos.length === 0){
+        } else if (dones.length >= 2 && todos.length === 0) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
-        } else if(dones.length >=2 && todos.length !== 0){
+        } else if (dones.length >= 2 && todos.length !== 0) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
     };
@@ -94,32 +94,32 @@ class App extends Component {
         ]; // move done to todo list
         dones.splice(index, 1); // remove done from done list
 
-        if(todos.length <=1 && dones.length <= 1){
+        if (todos.length <= 1 && dones.length <= 1) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
-        } else if(todos.length >=2){
+        } else if (todos.length >= 2) {
             return this.setState({listBtnsAllDone: true, listBtnsDelAll: false, todos, dones});
-        } else if(dones.length >=2 && todos.length === 0){
+        } else if (dones.length >= 2 && todos.length === 0) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos, dones});
-        } else if(dones.length >=2 && todos.length !== 0){
+        } else if (dones.length >= 2 && todos.length !== 0) {
             return this.setState({listBtnsAllDone: false, listBtnsDelAll: false, todos, dones});
         };
 
     };
 
     showTodoBtns(index) {
-        this.setState({hoverTodo: index})
+        return this.setState({hoverTodo: index})
     };
 
     hideTodoBtns() {
-        this.setState({hoverTodo: ''})
+        return this.setState({hoverTodo: ''})
     };
 
     showDoneBtns(index) {
-        this.setState({hoverDone: index})
+        return this.setState({hoverDone: index})
     };
 
     hideDoneBtns() {
-        this.setState({hoverDone: ''})
+        return this.setState({hoverDone: ''})
     };
 
     moveTodo(dragItem, hoverIndex) {
@@ -132,7 +132,7 @@ class App extends Component {
         todos.splice(dragItem.index, 1); // delete dragged item
         todos.splice(hoverIndex, 0, dragItem); // insert dragged item
 
-        this.setState({todos});
+        return this.setState({todos});
     };
 
     deleteTodo(index) {
@@ -140,10 +140,10 @@ class App extends Component {
         todos.splice(index, 1);
 
         if (todos.length <= 1) {
-            this.setState({listBtnsAllDone: false, todos});
+            return this.setState({listBtnsAllDone: false, todos});
         } else {
-            this.setState({listBtnsAllDone: true, todos});
-        };
+            return this.setState({listBtnsAllDone: true, todos});
+        }
     };
 
     deleteDone(index) {
@@ -151,17 +151,9 @@ class App extends Component {
         dones.splice(index, 1);
 
         if (dones.length <= 1) {
-            this.setState({listBtnsDelAll: false, dones});
+            return this.setState({listBtnsDelAll: false, dones});
         } else {
-            this.setState({listBtnsDelAll: true, dones});
-        };
-    };
-
-    showListBtns() {
-        let todos = [...this.state.todos];
-        let dones = [...this.state.dones];
-        if (todos.length !== 0 && dones.length !== 0) {
-            return {display: 'none'};
+            return this.setState({listBtnsDelAll: true, dones});
         }
     };
 
@@ -170,11 +162,9 @@ class App extends Component {
         todos.splice(0, todos.length);
         let dones = [...this.state.dones];
         dones.splice(0, dones.length);
-        if (todos.length === 0) {
-            this.setState({listBtnsDelAll: true, todos, dones});
-        } else {
-            this.setState({listBtnsDelAll: false, todos, dones});
-        }
+
+        return this.setState({listBtnsDelAll: false, todos, dones});
+
     };
 
     allDone() {
@@ -189,7 +179,7 @@ class App extends Component {
             }); // mark todos done
         let dones = [...this.state.dones].concat(todos); // merge arrays
         todos.splice(0, todos.length); // delete todos
-        this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos: [], dones});
+        return this.setState({listBtnsAllDone: false, listBtnsDelAll: true, todos: [], dones});
     };
 
     render() {

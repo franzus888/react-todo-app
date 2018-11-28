@@ -15,6 +15,7 @@ class Lists extends Component {
                     hideTodoBtns={this.props.hideTodoBtns}
                     checkTodoDone={this.props.checkTodoDone}
                     hoverTodo={this.props.hoverTodo}
+                    hoverTodoItem={this.props.hoverTodoItem}
                     moveTodo={this.props.moveTodo}
                     deleteTodo={this.props.deleteTodo}/>
                 <Donelist

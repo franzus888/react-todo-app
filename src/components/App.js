@@ -122,6 +122,13 @@ class App extends Component {
         return this.setState({hoverDone: ''})
     };
 
+    hoverTodoItem(dragItemIndex, hoverIndex) {
+        let todos = [...this.state.todos];
+
+        return this.setState({todos})
+        
+    }
+
     moveTodo(dragItem, hoverIndex) {
         let todos = [...this.state.todos]; // copy the array
 
@@ -206,6 +213,9 @@ class App extends Component {
                         .checkTodoDone
                         .bind(this)}
                         hoverTodo={this.state.hoverTodo}
+                        hoverTodoItem={this
+                        .hoverTodoItem
+                        .bind(this)}
                         moveTodo={this
                         .moveTodo
                         .bind(this)}

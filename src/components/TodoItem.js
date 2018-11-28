@@ -17,9 +17,14 @@ const itemSource = {
 };
 
 const itemTarget = {
+    hover(props, monitor){
+        let dragItemIndex = monitor.getItem().index;
+        let hoverIndex = props.index
+        return props.hoverTodoItem(dragItemIndex, hoverIndex);
+    },
     drop(props, monitor) {
-        const dragItem = monitor.getItem()
-        const hoverIndex = props.index
+        let dragItem = monitor.getItem()
+        let hoverIndex = props.index
         return props.moveTodo(dragItem, hoverIndex);
     }
 };

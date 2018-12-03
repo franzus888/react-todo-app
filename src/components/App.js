@@ -25,11 +25,11 @@ class App extends Component {
         };
     };
 
-    newTodoChanged(e) {
+    newTodoChanged = (e) => {
         return this.setState({newTodo: e.target.value});
     };
 
-    formSubmitted(e) {
+    formSubmitted = (e) => {
         e.preventDefault();
         if (this.state.newTodo === '') {
             return;
@@ -56,7 +56,7 @@ class App extends Component {
 
     };
 
-    checkTodoDone(e, index) {
+    checkTodoDone = (e, index) => {
 
         let todos = [...this.state.todos]; // copy the array
         todos[index] = {
@@ -81,7 +81,7 @@ class App extends Component {
         };
     };
 
-    uncheckDoneToDo(e, index) {
+    uncheckDoneToDo = (e, index) => {
         let dones = [...this.state.dones]; // copy the array
         dones[index] = {
             ...dones[index],
@@ -106,30 +106,30 @@ class App extends Component {
 
     };
 
-    showTodoBtns(index) {
+    showTodoBtns = (index) => {
         return this.setState({hoverTodo: index})
     };
 
-    hideTodoBtns() {
+    hideTodoBtns = () => {
         return this.setState({hoverTodo: ''})
     };
 
-    showDoneBtns(index) {
+    showDoneBtns = (index) => {
         return this.setState({hoverDone: index})
     };
 
-    hideDoneBtns() {
+    hideDoneBtns = () => {
         return this.setState({hoverDone: ''})
     };
 
-    hoverTodoItem(dragItemIndex, hoverIndex) {
+    hoverTodoItem = (dragItemIndex, hoverIndex) => {
         let todos = [...this.state.todos];
 
         return this.setState({todos})
-        
+
     }
 
-    moveTodo(dragItem, hoverIndex) {
+    moveTodo = (dragItem, hoverIndex) => {
         let todos = [...this.state.todos]; // copy the array
 
         if (dragItem.index === hoverIndex) {
@@ -142,7 +142,7 @@ class App extends Component {
         return this.setState({todos});
     };
 
-    deleteTodo(index) {
+    deleteTodo = (index) => {
         let todos = [...this.state.todos];
         todos.splice(index, 1);
 
@@ -153,7 +153,7 @@ class App extends Component {
         }
     };
 
-    deleteDone(index) {
+    deleteDone = (index) => {
         let dones = [...this.state.dones];
         dones.splice(index, 1);
 
@@ -164,7 +164,7 @@ class App extends Component {
         }
     };
 
-    deleteAll() {
+    deleteAll = () => {
         let todos = [...this.state.todos];
         todos.splice(0, todos.length);
         let dones = [...this.state.dones];
@@ -174,7 +174,7 @@ class App extends Component {
 
     };
 
-    allDone() {
+    allDone = () => {
         let todos = this
             .state
             .todos
@@ -196,51 +196,23 @@ class App extends Component {
                 <main className="App-main">
                     <AddTodo
                         newTodo={this.state.newTodo}
-                        formSubmitted={this
-                        .formSubmitted
-                        .bind(this)}
-                        newTodoChanged={this
-                        .newTodoChanged
-                        .bind(this)}/>
+                        formSubmitted={this.formSubmitted}
+                        newTodoChanged={this.newTodoChanged}/>
                     <Lists
-                        showTodoBtns={this
-                        .showTodoBtns
-                        .bind(this)}
-                        hideTodoBtns={this
-                        .hideTodoBtns
-                        .bind(this)}
-                        checkTodoDone={this
-                        .checkTodoDone
-                        .bind(this)}
+                        showTodoBtns={this.showTodoBtns}
+                        hideTodoBtns={this.hideTodoBtns}
+                        checkTodoDone={this.checkTodoDone}
                         hoverTodo={this.state.hoverTodo}
-                        hoverTodoItem={this
-                        .hoverTodoItem
-                        .bind(this)}
-                        moveTodo={this
-                        .moveTodo
-                        .bind(this)}
-                        deleteTodo={this
-                        .deleteTodo
-                        .bind(this)}
+                        hoverTodoItem={this.hoverTodoItem}
+                        moveTodo={this.moveTodo}
+                        deleteTodo={this.deleteTodo}
                         dones={this.state.dones}
-                        showDoneBtns={this
-                        .showDoneBtns
-                        .bind(this)}
-                        hideDoneBtns={this
-                        .hideDoneBtns
-                        .bind(this)}
-                        uncheckDoneToDo={this
-                        .uncheckDoneToDo
-                        .bind(this)}
-                        deleteDone={this
-                        .deleteDone
-                        .bind(this)}
-                        allDone={this
-                        .allDone
-                        .bind(this)}
-                        deleteAll={this
-                        .deleteAll
-                        .bind(this)}
+                        showDoneBtns={this.showDoneBtns}
+                        hideDoneBtns={this.hideDoneBtns}
+                        uncheckDoneToDo={this.uncheckDoneToDo}
+                        deleteDone={this.deleteDone}
+                        allDone={this.allDone}
+                        deleteAll={this.deleteAll}
                         todos={this.state.todos}
                         hoverDone={this.state.hoverDone}
                         listBtnsAllDone={this.state.listBtnsAllDone}

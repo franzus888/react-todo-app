@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 // Components
 import Header from './Header';
 import AddTodo from './AddTodo';
@@ -14,27 +15,14 @@ class App extends Component {
 
     constructor() {
         super();
+
         this.state = {
-            newTodo: "",
+            newTodo: '',
             hoverTodo: false,
             hoverDone: false,
             listBtnsAllDone: false,
             listBtnsDelAll: false,
-            todos: [
-                {
-                    title: 'test1',
-                    done: false
-                }, {
-                    title: 'test2',
-                    done: false
-                }, {
-                    title: 'test3',
-                    done: false
-                }, {
-                    title: 'test4',
-                    done: false
-                }
-            ],
+            todos: [],
             dones: []
         };
     };
@@ -146,7 +134,7 @@ class App extends Component {
         } else if (dragItem.index < hoverIndex) {
             todos.splice(hoverIndex - 1, 1, hoverItem); // hoverItem up
             return this.setState({todos});
-        } else if (dragItem.index === hoverIndex){
+        } else if (dragItem.index === hoverIndex) {
             return;
         }
 
@@ -249,5 +237,29 @@ class App extends Component {
         );
     };
 };
+
+App.PropTypes = {
+    newTodo: PropTypes.string,
+    hoverTodo: PropTypes.bool,
+    hoverDone: PropTypes.bool,
+    listBtnsAllDone: PropTypes.bool,
+    listBtnsDelAll: PropTypes.bool,
+    todos: PropTypes.array,
+    dones: PropTypes.array,
+    newTodoChanged: PropTypes.func,
+    formSubmitted: PropTypes.func,
+    checkTodoDone: PropTypes.func,
+    uncheckDoneToDo: PropTypes.func,
+    showTodoBtns: PropTypes.func,
+    hideTodoBtns: PropTypes.func,
+    showDoneBtns: PropTypes.func,
+    hideDoneBtns: PropTypes.func,
+    hoverTodoItem: PropTypes.func,
+    moveTodo: PropTypes.func,
+    deleteTodo: PropTypes.func,
+    deleteDone: PropTypes.func,
+    deleteAll: PropTypes.func,
+    allDone: PropTypes.func
+}
 
 export default DragDropContext(HTML5Backend)(App)

@@ -17,8 +17,10 @@ const itemSource = {
 };
 
 const itemTarget = {
-    hover(props, monitor){
-        let dragItemIndex = monitor.getItem().index;
+    hover(props, monitor) {
+        let dragItemIndex = monitor
+            .getItem()
+            .index;
         let hoverIndex = props.index
         return props.hoverTodoItem(dragItemIndex, hoverIndex);
     },
@@ -58,25 +60,12 @@ class TodoItem extends Component {
                     className="App-checkbox"
                     onChange={(e) => checkTodoDone(e, index)}
                     type="checkbox"
-                    checked={todo.done}/>
-                <span
-                    className="App-todo-move"
-                    style={{
-                    display: hoverTodo === index
-                        ? ''
-                        : 'none'
-                }}><FontAwesomeIcon className="App-svg-middle" icon={faSort}/></span>
+                    checked={todo.done}/> {hoverTodo === index && <span className="App-todo-move"><FontAwesomeIcon className="App-svg-middle" icon={faSort}/></span>}
                 <span className="App-item-todo">{todo.title}</span>
-                <span
-                    className="App-todo-delete"
-                    style={{
-                    display: hoverTodo === index
-                        ? ''
-                        : 'none'
-                }}><FontAwesomeIcon
+                {hoverTodo === index && <span className="App-todo-delete"><FontAwesomeIcon
                     onClick={() => deleteTodo(index)}
                     className="App-svg-delete"
-                    icon={faTimes}/></span>
+                    icon={faTimes}/></span>}
             </li>
         ))
     };

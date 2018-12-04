@@ -20,7 +20,21 @@ class App extends Component {
             hoverDone: false,
             listBtnsAllDone: false,
             listBtnsDelAll: false,
-            todos: [],
+            todos: [
+                {
+                    title: 'test1',
+                    done: false
+                }, {
+                    title: 'test2',
+                    done: false
+                }, {
+                    title: 'test3',
+                    done: false
+                }, {
+                    title: 'test4',
+                    done: false
+                }
+            ],
             dones: []
         };
     };
@@ -122,22 +136,34 @@ class App extends Component {
         return this.setState({hoverDone: ''})
     };
 
-    hoverTodoItem = (dragItemIndex, hoverIndex) => {
-        let todos = [...this.state.todos];
+    hoverTodoItem = (dragItem, hoverIndex) => {
+        let todos = [...this.state.todos]; // copy the array
+        let hoverItem = todos[hoverIndex];
 
-        return this.setState({todos})
+        if (dragItem.index > hoverIndex) {
+            todos.splice(hoverIndex + 1, 1, hoverItem); // hoverItem down
+            return this.setState({todos});
+        } else if (dragItem.index < hoverIndex) {
+            todos.splice(hoverIndex - 1, 1, hoverItem); // hoverItem up
+            return this.setState({todos});
+        } else if (dragItem.index === hoverIndex){
+            return;
+        }
 
-    }
+    };
 
     moveTodo = (dragItem, hoverIndex) => {
         let todos = [...this.state.todos]; // copy the array
+
+        console.log('DI', dragItem.index);
+        console.log('HI', hoverIndex);
+        console.log(todos);
 
         if (dragItem.index === hoverIndex) {
             return // Don't replace items with themselves
         };
 
-        todos.splice(dragItem.index, 1); // delete dragged item
-        todos.splice(hoverIndex, 0, dragItem); // insert dragged item
+        todos.splice(hoverIndex, 1, dragItem); // insert dragged item
 
         return this.setState({todos});
     };

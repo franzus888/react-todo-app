@@ -18,15 +18,13 @@ const itemSource = {
 
 const itemTarget = {
     hover(props, monitor) {
-        let dragItemIndex = monitor
-            .getItem()
-            .index;
-        let hoverIndex = props.index
-        return props.hoverTodoItem(dragItemIndex, hoverIndex);
+        let dragItem = monitor.getItem();
+        let hoverIndex = props.index;
+        return props.hoverTodoItem(dragItem, hoverIndex);
     },
     drop(props, monitor) {
-        let dragItem = monitor.getItem()
-        let hoverIndex = props.index
+        let dragItem = monitor.getItem();
+        let hoverIndex = props.index;
         return props.moveTodo(dragItem, hoverIndex);
     }
 };
@@ -41,7 +39,7 @@ class TodoItem extends Component {
             checkTodoDone,
             hoverTodo,
             deleteTodo,
-            isDragging,
+            isHovering,
             connectDragSource,
             connectDropTarget
         } = this.props;
@@ -52,7 +50,7 @@ class TodoItem extends Component {
                 onMouseEnter={() => showTodoBtns(index)}
                 onMouseLeave={() => hideTodoBtns(index)}
                 style={{
-                opacity: isDragging
+                opacity: isHovering
                     ? 0
                     : 1
             }}>
@@ -72,8 +70,8 @@ class TodoItem extends Component {
 };
 
 export default flow(DragSource('todo', itemSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-})), DropTarget('todo', itemTarget, (connect) => ({
-    connectDropTarget: connect.dropTarget()
+    connectDragSource: connect.dragSource()
+})), DropTarget('todo', itemTarget, (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isHovering: monitor.isOver()
 })))(TodoItem);

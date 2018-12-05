@@ -5,9 +5,6 @@ import Header from './Header';
 import AddTodo from './AddTodo';
 import Lists from './Lists';
 import Footer from './Footer'
-// Drag and Drop
-import HTML5Backend from 'react-dnd-html5-backend'
-import {DragDropContext} from 'react-dnd'
 // Styles
 import './../styles/App.scss';
 
@@ -262,4 +259,4 @@ App.propTypes = {
     allDone: PropTypes.func
 }
 
-export default DragDropContext(HTML5Backend)(App)
+export default App

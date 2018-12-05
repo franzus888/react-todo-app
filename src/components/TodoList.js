@@ -1,5 +1,8 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+// Drag and Drop
+import HTML5Backend from 'react-dnd-html5-backend'
+import {DragDropContext} from 'react-dnd'
 // Styles
 import './../styles/TodoList.scss';
 
@@ -33,4 +36,4 @@ function TodoList(props) {
     )
 };
 
-export default TodoList
+export default DragDropContext(HTML5Backend)(TodoList)

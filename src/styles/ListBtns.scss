@@ -1,0 +1,16 @@
+@import './App.scss';
+
+.App-list-btns {
+    margin: 0 auto;
+    position: relative;
+    bottom: 0;
+    width: 90%;
+}
+
+svg[data-icon=check]{
+    padding-right: 0.25em;
+}
+
+svg[data-icon=times]{
+    padding-right: 0.25em;
+}

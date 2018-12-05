@@ -1,0 +1,20 @@
+@import './App.scss';
+
+.App-todo-move{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.App-todo-delete{
+    float:right;
+    padding-right: 5px;
+}
+
+svg[data-icon=sort]:hover{
+    cursor: move;
+}
+
+svg[data-icon=times]:hover{
+    color: darkred;
+    cursor: pointer;
+}

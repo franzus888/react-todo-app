@@ -1,29 +1,36 @@
-import React, {Component} from 'react';
+import React from 'react';
 import TodoItem from './TodoItem';
 // Styles
-import './TodoList.scss';
+import './../styles/TodoList.scss';
 
-class TodoList extends Component {
-    render() {
-        let {todos} = this.props;
-        return (
-            <ul className="App-todo-list">
-                {todos.map((todo, index) => {
-                    return (<TodoItem
-                        todo={todo}
-                        key={index}
-                        index={index}
-                        showTodoBtns={this.props.showTodoBtns}
-                        hideTodoBtns={this.props.hideTodoBtns}
-                        checkTodoDone={this.props.checkTodoDone}
-                        hoverTodo={this.props.hoverTodo}
-                        hoverTodoItem={this.props.hoverTodoItem}
-                        moveTodo={this.props.moveTodo}
-                        deleteTodo={this.props.deleteTodo}/>)
-                })}
-            </ul>
-        )
-    };
+function TodoList(props) {
+    const {
+        todos,
+        showTodoBtns,
+        hideTodoBtns,
+        checkTodoDone,
+        hoverTodo,
+        hoverTodoItem,
+        moveTodo,
+        deleteTodo
+    } = props;
+    return (
+        <ul className="App-todo-list">
+            {todos.map((todo, index) => {
+                return (<TodoItem
+                    todo={todo}
+                    key={index}
+                    index={index}
+                    showTodoBtns={showTodoBtns}
+                    hideTodoBtns={hideTodoBtns}
+                    checkTodoDone={checkTodoDone}
+                    hoverTodo={hoverTodo}
+                    hoverTodoItem={hoverTodoItem}
+                    moveTodo={moveTodo}
+                    deleteTodo={deleteTodo}/>)
+            })}
+        </ul>
+    )
 };
 
 export default TodoList

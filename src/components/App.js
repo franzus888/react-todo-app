@@ -9,7 +9,7 @@ import Footer from './Footer'
 import HTML5Backend from 'react-dnd-html5-backend'
 import {DragDropContext} from 'react-dnd'
 // Styles
-import './App.scss';
+import './../styles/App.scss';
 
 class App extends Component {
 
@@ -238,7 +238,7 @@ class App extends Component {
     };
 };
 
-App.PropTypes = {
+App.propTypes = {
     newTodo: PropTypes.string,
     hoverTodo: PropTypes.bool,
     hoverDone: PropTypes.bool,

@@ -1,32 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
 import DoneItem from './DoneItem'
 // Styles
-import './DoneList.scss';
+import './../styles/DoneList.scss';
 
-class DoneList extends Component {
-    render() {
-        let {
-            dones
-        } = this.props;
-        return (
-            <ul className="App-done-list">
-                {dones.map((done, index) => {
-                    return (
-                        <DoneItem
-                        done={done}
-                        index={index}
-                        key={index}
-                        showDoneBtns={this.props.showDoneBtns}
-                        hideDoneBtns={this.props.hideDoneBtns}
-                        uncheckDoneToDo={this.props.uncheckDoneToDo}
-                        hoverDone={this.props.hoverDone}
-                        deleteDone={this.props.deleteDone}
-                        />
-                    )
-                })}
-            </ul>
-        )
-    };
+function DoneList(props) {
+    const {
+        dones,
+        showDoneBtns,
+        hideDoneBtns,
+        uncheckDoneToDo,
+        hoverDone,
+        deleteDone
+    } = props;
+    return (
+        <ul className="App-done-list">
+            {dones.map((done, index) => {
+                return (<DoneItem
+                    done={done}
+                    index={index}
+                    key={index}
+                    showDoneBtns={showDoneBtns}
+                    hideDoneBtns={hideDoneBtns}
+                    uncheckDoneToDo={uncheckDoneToDo}
+                    hoverDone={hoverDone}
+                    deleteDone={deleteDone}/>)
+            })}
+        </ul>
+    )
 };
 
 export default DoneList;

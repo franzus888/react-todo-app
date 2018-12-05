@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 // Fontawesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSort, faTimes} from '@fortawesome/free-solid-svg-icons';
@@ -6,11 +6,11 @@ import {faSort, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {DragSource, DropTarget} from 'react-dnd';
 import flow from 'lodash/flow';
 // Styles
-import './TodoItem.scss';
+import './../styles/TodoItem.scss';
 
 const itemSource = {
     beginDrag(props) {
-        let todo = props.todo;
+        const todo = props.todo;
         todo.index = props.index;
         return todo;
     }
@@ -18,55 +18,54 @@ const itemSource = {
 
 const itemTarget = {
     hover(props, monitor) {
-        let dragItem = monitor.getItem();
-        let hoverIndex = props.index;
+        const dragItem = monitor.getItem();
+        const hoverIndex = props.index;
         return props.hoverTodoItem(dragItem, hoverIndex);
     },
     drop(props, monitor) {
-        let dragItem = monitor.getItem();
-        let hoverIndex = props.index;
+        const dragItem = monitor.getItem();
+        const hoverIndex = props.index;
         return props.moveTodo(dragItem, hoverIndex);
     }
 };
 
-class TodoItem extends Component {
-    render() {
-        let {
-            todo,
-            index,
-            showTodoBtns,
-            hideTodoBtns,
-            checkTodoDone,
-            hoverTodo,
-            deleteTodo,
-            isHovering,
-            connectDragSource,
-            connectDropTarget
-        } = this.props;
+function TodoItem(props) {
 
-        return connectDragSource(connectDropTarget(
-            <li
-                className="App-list-item"
-                onMouseEnter={() => showTodoBtns(index)}
-                onMouseLeave={() => hideTodoBtns(index)}
-                style={{
-                opacity: isHovering
-                    ? 0
-                    : 1
-            }}>
-                <input
-                    className="App-checkbox"
-                    onChange={(e) => checkTodoDone(e, index)}
-                    type="checkbox"
-                    checked={todo.done}/> {hoverTodo === index && <span className="App-todo-move"><FontAwesomeIcon className="App-svg-middle" icon={faSort}/></span>}
-                <span className="App-item-todo">{todo.title}</span>
-                {hoverTodo === index && <span className="App-todo-delete"><FontAwesomeIcon
-                    onClick={() => deleteTodo(index)}
-                    className="App-svg-delete"
-                    icon={faTimes}/></span>}
-            </li>
-        ))
-    };
+    const {
+        todo,
+        index,
+        showTodoBtns,
+        hideTodoBtns,
+        checkTodoDone,
+        hoverTodo,
+        deleteTodo,
+        isHovering,
+        connectDragSource,
+        connectDropTarget
+    } = props;
+
+    return connectDragSource(connectDropTarget(
+        <li
+            className="App-list-item"
+            onMouseEnter={() => showTodoBtns(index)}
+            onMouseLeave={() => hideTodoBtns(index)}
+            style={{
+            opacity: isHovering
+                ? 0
+                : 1
+        }}>
+            <input
+                className="App-checkbox"
+                onChange={(e) => checkTodoDone(e, index)}
+                type="checkbox"
+                checked={todo.done}/> {hoverTodo === index && <span className="App-todo-move"><FontAwesomeIcon className="App-svg-middle" icon={faSort}/></span>}
+            <span className="App-item-todo">{todo.title}</span>
+            {hoverTodo === index && <span className="App-todo-delete"><FontAwesomeIcon
+                onClick={() => deleteTodo(index)}
+                className="App-svg-delete"
+                icon={faTimes}/></span>}
+        </li>
+    ))
 };
 
 export default flow(DragSource('todo', itemSource, (connect, monitor) => ({
